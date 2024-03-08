@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container{
+            max-width: 700px;
+        }
+        .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>게시글</h2>
+    </div>
+
+    <button class="btn btn-dark pull-right"
+            onclick="location.href='board/boardList.html'"
+            th:onclick="|location.href='@{/board}'|"
+            type="button">목록으로
+    </button>
+
+    <div>
+        <label for="boardContent">내용</label>
+        <textarea class="form-control" rows="5"
+                  id="boardContent" name="boardContent"
+                  th:value="${board.content}" th:text="${board.content}" readonly></textarea>
+    </div>
+    <hr class="my-4">
+
+    <form th:action="@{/board/{boardId}/delete(boardId=${board.id})}" method="post">
+
+        <button class="btn btn-primary"
+                th:onclick="|location.href='@{/board/{boardId}/edit(boardId=${board.id})}'|"
+                type="button">수정</button>
+
+        <button class="btn btn-danger" type="submit">삭제</button>
+    </form>
+
+</div> <!-- /container -->
+
+</body>
